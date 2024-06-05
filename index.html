@@ -1,0 +1,625 @@
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="Files/Javascripts/stdtheme.css">
+		<script src="Files/Javascripts/jquery.min.js"></script>
+		<script src="Files/Javascripts/showhide.js"></script>
+        <script src="Files/Javascripts/filedate.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2-beta.1/MathJax.js?config=TeX-MML-AM_CHTML-full"></script>
+        <title> Changwei Xiong's Homepage</title>
+    </head>
+	
+    <body marginwidth="1" marginheight="1">
+        <font>
+            <h2>Changwei Xiong</h2>
+			<hr/>
+            <h4> 
+				<p>Ph.D, <i><a href="https://www.chem.utah.edu/">Physical Chemistry</a></i>, University of Utah, USA</p>
+				<p>M.S., <i><a href="https://www.finmath.rutgers.edu/">Financial Mathematics</a></i>, Rutgers - The State University of New Jersey, USA</p>
+				<p>M.S., <i><a href="https://www.cs.utah.edu/">Computational Engineering and Science</a></i>, University of Utah, USA</p>
+				<p>B.S., <i><a href="https://chemen.nankai.edu.cn/">Chemistry</a></i>, Nankai University, China</p> 
+				<br/>
+				<p><a href="Files/Docs/Changwei_Xiong_Curriculum_Vitae.pdf">Curriculum Vitae</a></p>
+				<p><a href="http://www.linkedin.com/in/cxiong">LinkedIn Profile</a></p>
+				<p><a href="mailto:axcw@hotmail.com">Email</a></p>                
+            </h4>
+			
+		
+			<!-- *************************************************************************************** -->
+			<hr/>
+            <h2>About Me</h2>
+			<h4> 
+				<p>
+					A quantitative analyst works at Standard Chartered Bank Singapore, developing FX and hybrid models for derivative pricing. I am a self-motivated quick learner keen on various financial models and numerical algorithms.
+				</p>
+				<p>
+					For more details, please refer to my <a href="Files/Docs/Changwei_Xiong_Curriculum_Vitae.pdf">curriculum vitae</a>. 
+				</p>
+            </h4>
+            
+			<!-- *************************************************************************************** -->
+			<hr/>
+            <h2>Website Migration</h2>
+			<h4> 
+				<!-- <font color="red"> -->
+				<p>
+					This site had been hosted at "http://www.cs.utah.edu/~cxiong/" for more than 10 years. Unfortunately, it had been permanently discontinued since 2018. I had to migrate the whole site to github (<a href="https://modelmania.github.io/main/">https://modelmania.github.io/main/</a>). Hope this does not cause too much trouble to you...				
+				</p>
+				<!-- </font> -->
+			</h4>
+            
+			<!-- *************************************************************************************** -->
+            <hr/>
+            <h2>Note on License</h2>
+            <div class="formula">
+				<p>
+					All programs presented here are free software unless otherwise stated inside the source files; you can redistribute it and/or modify it under the terms of the "Revised BSD 3-Clause License"
+				</p>
+				<p>
+					The programs are distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+				</p>
+                <p>
+					Please see the <a href="https://en.wikipedia.org/wiki/BSD_licenses">"Revised BSD License"</a> for more details.
+				</p>
+            </div>
+            
+			
+			<!-- *************************************************************************************** -->
+			<hr/>
+            <h2><a name="QFP">Quantitative Finance Projects</a></h2>
+            <p>
+                I present here some quantitative finance projects that I have done or have been working on. Hope they can be of any help to you. If you have identified any typos/errors/bugs, or you happens to have any comments for me, please do feel free to drop me a line. Your feedback is much appreciated!
+            </p>
+            <ol type="disk">
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_VolatilitySurface.pdf">
+								 Volatility Surface Construction and Stochastic Local Volatility Models
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>
+							The <a href="Files/Docs/Changwei_Xiong_VolatilitySurface.pdf"> notes </a> start with an introduction to the FX option market conventions, including the basic option trading strategies, market quoting conventions for the at-the-money and delta definitions, and the market quoted at-the-money, risk reversal and strangle volatilities. A volatility surface can be constructed out of the market quoted volatilities using smile interpolation methods, e.g., Polynomial-in-Delta method and Stochastic Volatility Inspired (SVI) methods. There are three types of SVI methods, Uni-SVI, Bi-SVI and Tri-SVI. Experiments show that Polynomial-in-Delta method and Tri-SVI method are stable and easy to calibrate.							
+						</p>
+						<br/>
+						
+						<p>
+							In the notes, a family of local volatility models and stochastic local volatility models is also introduced. The prototypes of these models have been implemented in C++ with functions exported as DLL to Excel. I created an <a href="Files/Codes/Changwei_Xiong_FXVolSurface.7z">Excel workbook</a> to demonstrate the volatility surface construction, the calibration of the models, and the pricing of barrier options using the calibrated models, in FX context. Since solving 3D PDEs involves intensive matrix-vector operations, I have implemented <a href="https://en.wikipedia.org/wiki/Expression_templates"> Expression Templates </a> in C++ to make the vector arithmetics more efficient. These models are briefly described below from the simplest Dupire to the most sophisticated MixedGeneralDupire		
+                        </p>						
+						<ul type="square">
+							<li class="formula">
+								<font color="Chocolate"><i>Dupire</i></font>: classical Dupire local volatility model. The volatility process is assumed to be a function of time and spot level
+							</li>
+							<li class="formula">
+								<font color="Chocolate"><i>MixedDupire</i></font>: Multi-state Dupire local volatility model. A simple stochastic local volatility model widely used in the industry to price first-generation FX exotics. The stochastic volatility component is modeled as an initial random shock and calibrated to volatility smiles. The local volatility component is calibrated based on Gyöngy theorem by solving 1D PDE at different state levels of the initial shock and remixing the states in a forward induction manner 
+							</li>
+							<li class="formula">
+								<font color="Chocolate"><i>MCOUDupire</i></font>: Markov Chain Ornstein-Uhlenbeck Dupire model. A simplified version of the OUDupire model. The stochastic volatility component is assumed to be driven by an independent discrete Markov chain process, equivalent to the Exponential Ornstein-Uhlenbeck process in OUDupire model. This simplification greatly improves computational efficiency as it avoids solving 2D PDE in calibration. Instead, we solve 1D PDE at different state levels and remix the states in a forward induction manner. This model is superior to the MixedDupire model as it possesses mean reversion dynamics, which is more realistic to describe the forward volatility dynamics
+							</li>
+							<li class="formula">
+								<font color="Chocolate"><i>OUDupire</i></font>: Ornstein-Uhlenbeck Dupire model, a full-fledged 2D stochastic local volatility model. The stochastic volatility component is modeled as an Exponential Ornstein-Uhlenbeck process with mean reversion. Calibration of the local volatility component is again based on Gyöngy theorem by 2D forward induction. The 2D forward PDE is solved using one of the locally one-dimensional methods
+							</li>
+							<li class="formula">
+								<font color="Chocolate"><i>GeneralDupire</i></font>: An extension of Dupire local volatility model that further assumes stochastic rates for foreign and domestic currencies. Both rates are modeled as Hull-White 1 factor short rate model. One big advantage of this model is that it allows to fit the volatility surface while still incorporating stochastic rates, though the model is relatively complicated as both calibration and pricing involve solving 3D PDE. Local volatility function in the GeneralDupire model must incorporate rates dynamics and hence need be calibrated through 3D forward induction. The 3D forward PDE is solved using locally one-dimensional method, one of the splitting methods developed to solve multi-dimensional PDE problems. As it solves 3D PDE, this model is relatively slow. The model was discussed in a short presentation with the <a href="Files/Docs/Changwei_Xiong_GeneralLocalVolSlides.pdf">powerporint slides</a>
+							</li>
+							<li class="formula">
+								<font color="Chocolate"><i>MixedGeneralDupire</i></font>: Multi-state general Dupire local volatility model. This is a stochastic local volatility model with stochastic rates, extended from the GeneralDupire model and the MixedDupire model. The stochastic volatility component is modeled the same as in the MixedDupire model, which is driven by an initial random shock. Both stochastic rates are modeled as Hull-White 1 factor short rate model, the same as in GeneralDupire model. The local volatility component is calibrated based on Gyöngy theorem, by solving 3D PDE at different state levels of the initial shock and remixing the states in a forward induction manner
+							</li>
+						</ul>
+						<br/>
+						
+						<p>
+							We also describe the vanna-volga pricing method in the notes, which is often used for pricing first-generation FX exotic products. An simple application of the method is to build a volatility smile that is consistent with the market quoted volatilities and allows us to derive implied volatility at any strike, in particular for those outside the basic range set by the market quotes.
+                        </p>
+						<br/>
+						
+						<p>
+							Lastly, we present a PDE based local volatility model in the context of equity. In this model, the local volatility function is parametrized as piecewise linear in log-moneyness and piecewise constant in time. As in the Dupire model, traditional construction of the local volatility surface involves estimating highly sensitive partial derivatives in Dupire formulas. In contrast to the Dupire model, this method relies heavily on solving forward PDE’s to calibrate the parametrized local volatility surface to vanilla options, in a bootstrapping manner. Pricing can then be done by solving backward PDE along with the calibrated local volatility function. The model has been <a href="Files/Codes/Changwei_Xiong_Local_Volatility_PDE.zip">implemented in Python</a>. To run the code, you may need to setup your Python enviroment by following the steps listed <a href='#interest_rate_models'>here</a>.
+                        </p>
+					
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Docs/Changwei_Xiong_VolatilitySurface.pdf"));
+                        </script> -->
+					</div>
+                </li>   
+				
+				
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a name='interest_rate_models' href="Files/Docs/Changwei_Xiong_InterestRateModels.pdf">
+								Hull-White One-Factor Model in Multi-Curve Framework
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							I have been continuously expanding my <a href="Files/Docs/Changwei_Xiong_InterestRateModels.pdf">notes</a> on rates models. In the past year, I implemented and documented the Hull-White one factor model in a multi-curve framework. Both finite difference based PDE and least square regression based Quasi Monte Carlo simulation are implemented for pricing exotic rates products, such as bermudan swaptions/cancellable IRS, cancellable range accruals, and IR TARN's. Additionally, I also provided a routine to show a static replication of CMS (constant maturity swap) cap/floor/swap by a portfolio of swaptions. It addresses the convexity correction associated with the bond/annuity numeraire ratio.
+						</p>
+						<p>
+							The model has been <a href="Files/Codes/Changwei_Xiong_HW1F_PDE_And_MC.zip">implemented in Python</a> using Numpy/Scipy and <a href="http://quantlib.org/">QuantLib</a>. In fact, the implementation has considered most of the practical details (e.g. conventions and spot lag/payment lag, etc) that can be expected in a real trading system for both calibration and pricing. Both PDE and Monte Carlo method are implemented for side-by-side comparison.
+						</p>                        
+                        <p>
+							To run the code, you would need a scientific Python environment and QuantLib-Python installed in your system. Although you can install each of the required libraries manually, the simplest way to get them all is to download and install (both are free open-sourced): 
+                            <ul type="square" >
+                                <li class="formula">
+                                    <a href="https://www.continuum.io/">Anaconda Python</a> or <a href="https://winpython.github.io/">WinPython</a> (or any other scientific Python distribution).
+                                </li>
+                                <li class="formula">
+                                    The pre-compiled <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#quantlib">QuantLib-Python</a> library. 
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            Alternatively, if you prefer the latest version of the QuantLib-Python to the aforementioned pre-compiled one, you may follow <a href="Files/Misc/QuantLib_Python.html">this guide</a> to build your own QuantLib-Python library. This actually gives more flexibility as it allows the user to modify the QuantLib source code and incorporate the changes into a customized QuantLib-Python library.
+                        </p>                         
+                        <p>
+							Note that I programmed the code in Python3 using <a href="https://www.visualstudio.com/">Visual Studio 2015</a> with <a href="http://microsoft.github.io/PTVS/">Python Tools for Visual Studio</a> plugin. Other open source Python IDE's, e.g. <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> and <a href="https://code.visualstudio.com/">Visual Studio Code</a>, should also work seamlessly.
+                        </p>  
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Codes/Changwei_Xiong_HW1F_PDE_And_MC.zip"));
+                        </script> -->
+					</div>
+                </li>				
+       
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Codes/Changwei_Xiong_OIS_Discounting_and_Multiple_Curve_Construction.xls">
+								OIS Discounting and Multiple Curve Construction
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+                    
+						<p>
+							After the credit crunch, majority of OTC traded derivatives are collateralized. Traditional single curve bootstrapping is therefore no longer valid for building discount curves to discount collateralized cashflows. Instead, dual curve bootstrapping has emerged, using overnight rate as risk free rate. There have been many literatures discussing the construction of OIS discounting curve. Here, I have created an <a href="Files/Codes/Changwei_Xiong_OIS_Discounting_and_Multiple_Curve_Construction.xls">Excel workbook</a> to demonstrate the curve interpolation, OIS discount curve bootstrapping and collateralized interest rate swap pricing. In addition, I have also included an example that bootstraps a CSA curve from cross currency basis swap (e.g. EUR-USD basis swap). Such curve can be used to discount cashflows in one currency(e.g. EUR) while collateralized in another currency(e.g. USD). 
+						</p>
+						<p>
+							The program is written in VBA. It implements the most used day count conventions and date rolling conventions. Bank holidays in Europe, UK and US are also accounted for. The bootstrapped curves are compared against those shown in literatures or those provided by Bloomberg. In most cases the errors are negligible.
+						</p>
+						<p>
+							The spreadsheets are still in draft version. New versions will be uploaded regularly. Meanwhile I am also preparing a document to be attached to the spreadsheets. Please feel free to write me your comments.
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Codes/Changwei_Xiong_OIS_Discounting_and_Multiple_Curve_Construction.xls"));
+                        </script> -->
+					</div>
+                </li>
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_InterestRateModels.pdf">
+								Introduction to Interest Rate Models
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							I have come across many interesting pricing models in my work. This <a href="Files/Docs/Changwei_Xiong_InterestRateModels.pdf">document</a> was initially motivated as a study note for my own reference to provide systematic explanations and detailed derivations of rate models. As it expands, the content has been increased significantly. <!-- Part of the note has been used in a 5-day lecture that I gave for the graduate students in the <a href="http://www.mgmt.uestc.edu.cn/en/">School of Management and Economics of UESTC</a>. -->
+						</p>
+						<p>
+							The note provides an introduction to interest rate models. Firstly it gives an intuitive explanation of the martingale pricing theory and the change of numeraire technique. It then introduces vanilla products in interest rate markets and summarizes the idea of convexity adjusetment for products like Eurodollar futures, LIBOR-in-arrears and Constant Maturity Swaps. Furthermore, it covers the Heath–Jarrow–Morton (HJM) no-arbitrage condition and then the short rate models, including one-factor Hull-White model, multi-factor Gaussian model, 3-factor Jarrow-Yildirim model for inflation and long-dated FX products, etc. At last it discusses intensively the Libor market model (LMM) (i.e. Brace Gatarek Musiela (BGM) Model in industry). It introduces the rate dynamics in the LMM, the volatility and correlation structures, the calibration procedures and its application to pricing Bermudan swaptions using Longstaff-Schwartz Least-Square Monte Carlo (LSMC) and predictor-corrector method.  
+						</p>
+						<p>
+							To better illustrate the LIBOR market model, I have created an <a href="Files/Codes/Changwei_Xiong_Libor_Market_Model.xls">Excel workbook</a> to demonstrate the model implementation, calibration, and its application to Bermudan swaption pricing. It is coded in VBA. The spreadsheets show the caplet volatility bootstrapping, the joint calibration of LMM to caplet/swaption volatilities and the calibration to co-terminal swaption volatilities, and the Bermudan swaption pricing using Longstaff-Schwartz method and Quasi Monte Carlo simulations.
+						</p>
+						<p>
+							The document and the spreadsheets are still in draft version. I am still expanding it with more topics. New versions will be uploaded regularly. Please feel free to write me your comments.
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Docs/Changwei_Xiong_InterestRateModels.pdf"));
+                        </script> -->
+					</div>
+                </li>
+                
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_HestonFiniteElementMethod.pdf">
+								Heston’s Stochastic Volatility Model and its Application
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This <a href="Files/Docs/Changwei_Xiong_HestonFiniteElementMethod.pdf">document</a> provides many details about the <a href="https://en.wikipedia.org/wiki/Heston_model">Heston model</a>, such as the derivation of market price of spot/volatility risk, the Fourier transform method for option pricing, the derivation of characteristic function of the joint spot-variance process, the probability distribution of spot return, the piecewise time dependent Heston parameters [Elices 2008], etc. 
+						</p>
+						<p>
+							Furthermore, the document presents a detailed implementation of the <a href="https://en.wikipedia.org/wiki/Finite_element_method">Finite Element Method (FEM)</a> and its application to solve a Partial Differential Equation (PDE) arised from the Heston model. By varing the boundary conditions, the FEM solver is capable of pricing various path-dependent exotics. The FEM solver was originally implemented in C++ in Visual Studio 2008. I have recently revived the code completely to adapt many C++11/14/17 features. Please refer to the <a href="Files/Codes/Changwei_Xiong_HestonFEM_VS2019.zip">source code</a> for more information. Additional libraries are required for compiling the source code. For your convenience, I have packed them into a single archive. You may download it from this <a href="Files/Codes/CPP_Library_64bit.7z">link</a> (compressed by <a href="https://www.7-zip.org">7-zip</a>).
+						</p>
+						<p>
+							In addition, I have also created an <a href="Files/Codes/Changwei_Xiong_Heston_Calibration_And_Simulation.xls">Excel workbook</a> to show the calibration of Heston Model to a single maturity of volatility surface, as well as the calibration of a piecewise time dependent Heston model [Elices 2008] to a term structure of volatility surface. Three types of inversion methods, including the Heston's original one, have been implemented for pricing vanilla options. Integrals in these semi-analytical formulas are estimated numerically by <a href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian Quadratures</a>. Once the model is calibrated, the estimated parameters can then be used to price exotic options using monte carlo simulation, which in the spreadsheet implements <i>Quadratic Exponential Scheme</i> introduced by Anderson in the paper "Andersen, L., Simple and Efficient Simulation of the Heston stochastic Volatility Model, <i>Journal of Computational Finance</i> , 11 (3), pp. 1-42., 2008"
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Docs/Changwei_Xiong_HestonFiniteElementMethod.pdf"));
+                        </script> -->
+					</div>
+                </li>   
+				
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_SABR_Calibration.pdf">
+								Calibration of SABR Stochastic Volatility Model
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>	
+							SABR is a widely used stochastic Volatility model developed by Hagan et al. in their paper "Hagan, P.; Kumar, D.; Lesniewski, A.; Woodward, D., Managing smile risk, <i>Wilmott Magazine</i>, pp. 84–108., July 2002". The <a href="Files/Codes/Changwei_Xiong_Swaption_Volatility_SABR_Calibration.xls">Excel workbook</a> provides a simple calibration of SABR model to swaption volatility smiles of selected expiry-tenor pairs. Excel SOLVER is used to minimize the differences between the market implied volatilities and the volatilities given by SABR model. In the workbook, both the original method proposed by Hagan et. al. 2002 and the fine tuned correction proposed by Obloj 2008 are implemented.
+						</p>
+						<p>					
+							Additionally, as a comparison, I also implemented a constrained <a href="https://en.wikipedia.org/wiki/Nelder–Mead_method">Nelder-Mead Simplex method</a> in VBA to perform the minimization/calibration.
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Codes/Changwei_Xiong_Swaption_Volatility_SABR_Calibration.xls"));
+                        </script> -->
+					</div>
+                </li>				
+                
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_PRMIA_Market_Risk_Measurement.pdf">
+								Market Risk Measurement
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This draft was co-authored with <a href="https://www.linkedin.com/in/max-wong-38561924/">Max Wong</a> for a book chapter in <a href="https://prmia.org/Public/Certificate/MLARM_Certificate/MLARM_Exam_Preparation_Resources.aspx"><i>Market, Liquidity and Asset Liability Management Risk Manager Handbook</i></a> published by <a href="http://www.prmia.org/">PRMIA</a> in 2015. It introduces basic theories and practices of market risk management and measurement. Advanced topics are also discussed, including advanced backtesting methods, VaR estimation using Extreme Value theory and Copula functions and so on. It comes with a few explanatory <a href="Files/Codes/Changwei_Xiong_PRMIA_Market_Risk_Measurement_Spreadsheets.zip">Excel workbooks</a>.
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Docs/Changwei_Xiong_PRMIA_Market_Risk_Measurement.pdf"));
+                        </script> -->
+					</div>
+                </li>
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_IndependentComponentAnalysis.pdf">
+								Signal Separation via Independent Component Analysis
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>					
+							<i><a href="https://en.wikipedia.org/wiki/Independent_component_analysis">Independent component analysis (ICA)</a></i> is a computational method for separating a multivariate mixed signal into statistically independent non-Gaussian (source) signals. ICA shares certain similarity with the principle component analysis (PCA) method. But unlike the PCA that imposes strong assumption of Gaussian features and seek variance maximization and ensure uncorrelatedness only by the first and second moments of the signal, the ICA exploits inherently non-Gaussian features for independence and employs information from higher moments.  
+                        </p>
+                        <p>
+                            The <a href="Files/Codes/Changwei_Xiong_FastICA.xls">Excel workbook</a> implements the <i><a href="https://en.wikipedia.org/wiki/FastICA">FastICA</a></i> method as introduced in the paper <i>"Hyvärinen, A; Oja, E (2000). Independent Component Analysis: Algorithms and Applications. Neural Networks, 13(4-5),411-430"</i>. It attempts to separate mixed signals into independent components by maximizing negentropy, a measure of non-Gaussianity, of each component. 
+						</p>						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Docs/Changwei_Xiong_IndependentComponentAnalysis.pdf"));
+                        </script> -->
+					</div>
+                </li>				
+					
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">			
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_KalmanFilter.pdf">
+								Kalman Filter by Maximum Likelihood Estimation 
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>					
+							<a href="https://en.wikipedia.org/wiki/Kalman_filter">Kalman filter</a> is designed to filter out the desired true signal and the unobserved component from unwanted noises. The <a href="Files/Codes/Changwei_Xiong_Kalman_Filter.xls">Excel workbook</a> provides an implementation of a discrete-time Kalman filter and demonstrates its application of Maximum Likelihood Estimation to a simulated state-space model, which assumes the measurement and transition system are time homogeneous.
+						</p>
+						
+                        <!-- <script language="Javascript">
+                            document.write(print_file_date("Files/Codes/Changwei_Xiong_Kalman_Filter.xls"));
+                        </script> -->
+					</div>
+                </li>
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_MultiDimensionalSobol.pdf">
+								Multi-Dimensional Sobol Sequence for Quasi Monte Carlo Simulation
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>					
+							<i><a href="https://en.wikipedia.org/wiki/Low-discrepancy_sequence">Low discrepancy sequences</a></i>, e.g. the <i><a href="https://en.wikipedia.org/wiki/Sobol_sequence">Sobol sequence</a></i>, are often used in <i><a href="https://en.wikipedia.org/wiki/Quasi-Monte_Carlo_method">Quasi Monte Carlo</a></i> simulations to achieve a faster rate of convergence as compared to the standard Monte Carlo simulations. This is especially useful when a model, for example the LIBOR market model, needs to run a multi-dimensional Monte Carlo simulation. The <a href="Files/Codes/Changwei_Xiong_Multi_Dimensional_Sobol.xls">Excel workbook</a>, along with the <a href="Files/Docs/Changwei_Xiong_MultiDimensionalSobol.pdf">document</a>, provides an implementation of a multi-dimensional Sobol sequence generator in VBA and shows a few key properties of the low discrepancy sequence.
+						</p>
+					</div>
+                </li>
+				
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Codes/IndexReplication.zip">
+                                Index Replication using Genetic Algorithm
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>
+							Stock Index Replication is the first step to perform Cash-Futures Arbitraging (e.g. arbitraging by long under-priced index replication portfolio and short the over-priced stock index futures). This JAVA program implements an efficient algorithm to search for an optimal index replication sub-portfolio from the index constituent stocks. The index tracking is completed through two steps of optimization procedures. Firstly, a parallel <i><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic Algorithm</a></i> is used to find an optimal combinatorial subset out of the index constituent stocks. Secondly, a <i><a href="https://en.wikipedia.org/wiki/Quadratic_programming">Quadratic Programming</a></i> routine is used to determine optimal allocation weights in the subset of the stocks that minimize the tracking error. The JAVA multithreading technique is used to implement a parallel mechanism for the genetic algorithm, which allows it to run on multi-processors and accelerate the search process. The <a href="Files/Codes/IndexReplication.zip">source code package</a> includes 4 files:
+						</p>
+						<ul type="square">
+							<li class="formula">
+								"IndexReplication.java": The JAVA source code of the algorithm mentioned above.
+							</li>
+							<li class="formula">
+								"QuadProg.java": A Quadratic Programming JAVA routine that implements Goldfarb and Idnani's 1983's paper: <i>"A numerically stable dual method for solving strictly convex quadratic programs"</i>. 
+							</li>
+							<li class="formula">
+								"data.csv": An example of input data file, which consists of daily returns of a stock index and its 300 constituents. 
+							</li>
+							<li class="formula">
+								"IndexReplication.py": As a comparison, a concise Python implementation of the algorithm is also included for your reference. Note that this script does not implement the parallelism.
+							</li>
+						</ul>
+						<br/>
+					</div>
+                </li>				
+				
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_CreditRiskModeling.pdf">
+								Davis-Lo Credit Contagion Model: Theory, Implementation and Calibration
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This was my final project of the course "Credit Risk Modeling". In a credit portfolio, correlation of defaults plays a key role. It has substantial impact on the value of the credit portfolio. To capture the feature, Davis-Lo model, a fully dynamic contagion correlation model, is implemented and calibrated to collateralized debt obligation (CDO) market tranche quotes. Both <i>Monte Carlo simulation method</i> and <i>Markov Chain Generator method</i> are applied to compute the distribution of the number of defaults. A numerical optimization routine is used to perform the model calibration. For more information, please refer to the <a href="Files/Codes/DavisLoModel.zip">source code</a> which is implemented in Python.
+						</p>
+					</div>
+                </li>
+
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_PortfolioRiskDiversification.pdf">
+								Risk Diversification in Portfolios
+							</a>
+							<span class="icon-close-open"></span>
+						</h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This was my final project of the course "Portfolio Theory and Applications". It summarizes and applies the method described in the paper "Meucci, A., Managing Diversification, <i>Risk</i>, 22, 5, 74-79 (2009)" to analyze the portfolio risks and the risk diversification strategies. It uses standard principal component analysis and conditional principal component analysis method to analyze the risk profile under various constraints for portfolio construction and asset reallocation. The <a href="Files/Codes/PortfolioRiskDiversification.zip">source code</a> in MATLAB is also included for your reference.
+						</p>
+					</div>
+                </li>
+				
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Codes/EstimateGarchRegress.java">
+								Maximum Likelihood Estimation of "ARMAX(0,0,1)-GARCH(1,1)" Model
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>
+							Hedging (e.g. using stock index futures to hedge beta risk in portfolios) often ends up with using "ARMAX(0,0,1)/GARCH(1,1)" model to compute the hedge ratio. This is because a simple linear regression is not able to capture the stochasticity in volatilities. The <a href="Files/Codes/EstimateGarchRegress.java">JAVA class</a> implements the MLE of the model parameters. The model is described as follows:
+						</p>
+                        <div class="formula">
+							<p class="formula"><script type="math/tex">x_t, y_t</script> are two time series: &nbsp <script type="math/tex">y_t = \kappa + \gamma x_t + \varepsilon_t, \quad \varepsilon_t \sim Normal(0,h_t)</script></p>
+							<p class="formula"><script type="math/tex">h_t</script> is the variance of residual: &nbsp <script type="math/tex">h_t = \omega + \alpha \varepsilon_{t-1}^2 + \beta h_{t-1}</script></p>
+						</div>
+						<p>					
+							The parameter &gamma; is the hedge ratio. To be more realistic, the routine can also assume Student-t or exponential power distribution for the error term, in addition to the often used normal distribution. The <a href="https://en.wikipedia.org/wiki/BHHH_algorithm">BHHH method</a>, a variant of <i>Gauss-Newton method</i>, is used to perform the nonlinear optimization. The optimization routine <a href="https://en.wikipedia.org/wiki/Nelder–Mead_method">Nelder-Mead Simplex method</a> is also used for comparison purpose. 
+						</p>
+					</div>
+                </li>
+		
+				<li> <!-- *************************************************************************************** -->
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>Parameter Estimation using Markov Chain Monte Carlo (MCMC)<span class="icon-close-open"></span></h4>
+					</div>
+					<div class="expandable">
+						<p>					
+							Below are two examples that demonstrate the application of <i><a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">MCMC method</a></i> in model parameter estimation. The first example is a standard Linear Regression model and the second is a simple ARMAX(0,0,1)/GARCH(1,1) model (the same model shown above).
+						</p>
+						<p>The Linear Regression model is in the form:</p>
+						<div class="formula">
+                            <p class="formula"><script type="math/tex">y_t = a + b x_{1,t} + c x_{2,t} + \varepsilon_t, \quad \varepsilon_t \sim Normal(0,s)</script></p>
+                        </div>
+						<p>	
+							In this model, the parameters to be estimated are "<script type="math/tex">a, b, c, s</script>". <i><a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings method</a></i> is used to generate the MCMC sample sequencies. For simplicity, the prior distribution of the parameters are assumed to be flat (uniformly distributed). The proposed density utilizes a Normal distribution, in which case the original Metropolis-Hastings method reduces to a Random-Walk Metropolis Hastings method. Please refer to the <a href="Files/Codes/MCMC_LinearRegress.m">Matlab script</a> for the details of the implementation. For a simulated case using "<script type="math/tex">a = 1.0, b = 2.0, c = 3.0, s = 1.2</script>", the method estimates the parameters and generates posterior distributions for the estimations. The histograms of the estimated parameters are shown <i><a href="Files/Images/MCMC_LinearRegress.jpg">here</a></i>.
+						</p>
+						<!-- <img src="Files/Images/MCMC_LinearRegress.jpg" alt="" align="middle" hspace="10" vspace="10" width="400"/>	-->
+						<p>The ARMAX(0,0,1)/GARCH(1,1) model, which was previously estimated by MLE method, is in the form:</p>
+						<div class="formula">
+                            <p class="formula"><script type="math/tex">y_t = a + b x_t + \varepsilon_t, \quad \varepsilon_t \sim Normal(0,h_t)</script></p>
+                            <p class="formula"><script type="math/tex">h_t = c + d \varepsilon_{t-1}^2 + e h_{t-1}</script></p>
+						</div>
+						<p>	
+							In this model, the parameters to be estimated are "<script type="math/tex">a, b, c, d, e</script>". Random-Walk Metropolis Hastings method is again used to generate the MCMC sample sequencies. The prior distribution of the parameters is also assumed to be flat. Please refer to the <a href="Files/Codes/MCMC_ARMAX_GARCH.m">Matlab script</a> for the details of the implementation. It differs slightly from the case of Linear Regression with the fact that the parameters in GARCH model are constrained. To handle this feature, any sampled values that exceed the parameter bounds are assumed with zero probability and hence are discarded. For a simulated case using "<script type="math/tex">a = 0.2, b = 0.9, c = 0.2, d = 0.3, e = 0.4</script>", the method estimates the parameters and generates posterior distributions for the estimations. It can be expected that the estimation variances of the GARCH parameters are much larger than those of regression parameters. This shows that the Garch parameters are more sensitive to the input data. The histograms of the estimated parameters are shown <i><a href="Files/Images/MCMC_ARMAX_GARCH.jpg">here</a></i>.
+						</p>
+						<!-- <img src="Files/Images/MCMC_ARMAX_GARCH.jpg" alt="" align="middle" hspace="10" vspace="10" width="400"/> -->
+					</div>
+                </li>				
+				
+            </ol>
+
+			<!-- *************************************************************************************** -->
+			<hr/>
+            <h2><a name="PH">Programming Hobbies</a></h2>
+            <p>
+                Here are a few selected programming projects I have finished for either my coursework or just my hobby (Source codes are either already provided or available upon request). 
+            </p>
+            <ol>
+				<li>
+                    <div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Codes/Changwei_Xiong_FileEncryptionRSA_VS2017.zip">
+								File Encryption/Decryption based on RSA Algorithm
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This is a GUI-based file encryption and decryption program based on the <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA algorithm</a>. 
+						</p>
+						<p>
+							It implements the following features:
+						</p>					
+						<ol>
+							<li>Key generation
+								<br/>
+								Generate new RSA public/private key pairs up to 1024 bits.
+							</li>
+							<li>Key management
+								<br/>
+								Manage the public/private key pairs that are either generated or imported.
+							</li>
+							<li>File Encryption 
+								<br/>
+								Encrypt (or sign) arbitrary data files using the public (or private) key it manages.
+							</li>
+							<li>File Decryption 
+								<br/>
+								Decrypt (or verify) the encryped (or signed) files using the private (or public) key it manages.
+							</li>
+						</ol>
+						<p>
+							You must have Microsoft .Net Framework installed in your system to run it. The application was originally written in Visual C++.Net and translated to Windows Forms API in Visual Studio 2008, years ago. It had been further migrated to Visual Studio 2017 recently. The <a href="Files/Codes/Changwei_Xiong_FileEncryptionRSA_VS2017.zip">source code</a> package has included an executable in the "release\" directory.
+						</p>
+						<img src="Files/Images/RSA_Demo_1.jpg" alt="" align="middle" hspace="10" vspace="10" width="320"/><img src="Files/Images/RSA_Demo_2.jpg" alt="" align="middle" hspace="10" vspace="10" width="320"/>
+					</div>
+                </li>
+
+				<li>
+					<div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>
+							<a href="Files/Docs/Changwei_Xiong_ParticleSystems.pdf">
+								Computer Graphics (OpenGL) - Particle System
+							</a>
+							<span class="icon-close-open"></span>
+                        </h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This is an OpenGL based computer graphics program used to demonstrate the use of particle systems to simulate log fire, smoke, and falling snowflakes. The scene as shown below consists of a house, ground and trees. Inside the house, there are serveral objects including a fireplace, which is simulated by a fire particle system. The house has a chimney that emits smokes simulated by a smoke particle system. In the sky, the snowflakes, yet another particle system, fall down to the ground. The house is created with various textured objects for realism.
+						</p>
+						<p>					
+							The <a href="Files/Codes/Changwei_Xiong_GraphicsParticleSystem_VS2017.zip">source code</a> was originally implemented in C/C++  in Visual Studio.Net 2003 and had been recently migrated to Visual Studio 2017. The executable is also included as in the "release\" directory of the zip package. There is also a short <a href="Files/Docs/Changwei_Xiong_ParticleSystems.pdf">discription</a> of the project.
+						</p>
+						<img src="Files/Images/Graphics_PS_1.jpg" alt="Smoke and Snowflake" align="middle" hspace="10" vspace="10" width="380" /><img src="Files/Images/Graphics_PS_2.jpg" alt="log fire" align="middle" hspace="10" vspace="10" width="380" />
+					</div>
+                </li>
+
+				<li>
+					<div class="heading" onmouseover="this.style.background='#F5F5F5';" onmouseout="this.style.background='#E5E5E5';">
+						<h4>Web Camera Remote Controller<span class="icon-close-open"></span></h4>
+					</div>
+					<div class="expandable">
+						<p>
+							This is merely a hobby work. I use the program to remotely control <i>Logitech QuickCam® Orbit AF</i>
+							webcam while having a video chat with my family over the Internet. It involves two modules, the Server and the Client respectively. Upon a successful connection, the Client sends signals to the server via internet and the Server receives the signals and then controls the "pan", "tilt" and "zoom" of the webcam through DirectShow API. With this API, the program basically works with any web cameras that equipped with such features. 
+						</p>
+						<p>
+							Again, this program was developed in C++ using Windows Forms API in Visual Studio .Net 2008 and had been recently migrated to Visual Studio 2017. Therefore it requires Microsoft .Net Framework installed to run. Please refer to the source codes of the <a href="Files/Codes/Changwei_Xiong_WebcamControllerServerAndClient_VS2017.zip">Server and Client</a> for details.
+						</p>
+						<img src="Files/Images/Webcam_Server.jpg" alt="Server" align="middle" hspace="10" vspace="10" width="300"/><img src="Files/Images/Webcam_Client.jpg" alt="Client" align="middle" hspace="10" vspace="10" width="400"/>
+					</div>
+                </li>				
+            </ol>
+            
+            
+			<!-- *************************************************************************************** -->
+            <!--
+			<hr/>
+            <h2><a name="ML">Miscellaneous Links</a></h2>
+            <div class="formula">
+                <p><a href="http://www.uobgroup.com">United Overseas Bank</a></p>
+				<p><a href="http://www.rbs.com">Royal Bank of Scotland Plc</a></p>
+				<p><a href="http://www.kpmg.com/cn/en/Pages/default.aspx">KPMG, China</a></p>
+                <p><a href="http://www.aqr.com/">AQR Capital Management (Hedge Fund)</a></p>
+				<p><a href="http://www.csafe.utah.edu/">The Center for the Simulation of Accidental Fires and Explosions (C-SAFE), University of Utah</a></p>
+            </div>
+            -->
+
+            
+			<!-- *************************************************************************************** -->
+			<hr/>
+            <br/>
+            <p> 
+                Hope you like this site! If you'd like to buy me a beer, please feel free to click the link below :). Thank you so much!
+            </p> 
+            <p>
+                <a href="https://www.paypal.me/xiongcw"><img src="Files/Images/paypal_donate.gif" ></a>
+            </p>             
+            <br/>
+            
+            
+            <!-- *************************************************************************************** -->
+            <hr/>
+            <p>
+				This page is always under construction. 			
+				<script language="Javascript">
+					var lastModDate = new Date(document.lastModified)
+					document.write("Last update was on <i>" + lastModDate.toDateString() + "</i>.");
+				</script>
+			</p>
+			<img src="Files/Images/man_at_work.gif" alt="Man at work" align="middle" hspace="10" vspace="10"/>		
+			<p>
+				There have been  
+				<b>		
+					<!-- Start of StatCounter Code for Default Guide -->
+					<!-- -->
+					<script type="text/javascript">
+						var sc_project=9878883; 
+						var sc_invisible=0; 
+						var sc_security="ddba6bc1"; 
+						var sc_text=2; 
+						var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+						document.write("<sc"+"ript type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></"+"script>");
+					</script>
+					<noscript>
+						<div class="statcounter">
+							<a title="web analytics" href="http://statcounter.com/" target="_blank">
+								<img class="statcounter" src="http://c.statcounter.com/9878883/0/ddba6bc1/0/" alt="web analytics">
+							</a>
+						</div>
+					</noscript>
+					<!-- -->
+					<!-- End of StatCounter Code for Default Guide -->
+				</b>		
+				unique visits to this page since <i>July 18, 2013</i>.
+			</p>
+
+			<br/>
+            <br/>            
+        </font>
+    </body>
+</html>
+
+

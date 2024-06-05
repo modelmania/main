@@ -1,0 +1,207 @@
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Python QuantLib-SWIG Guide</title>
+    </head>
+	
+    <body marginwidth="10" marginheight="10">
+        <font>
+            <h2>QuantLib Python for Windows</h2>
+            <div style="width:95%;;padding:0px 20px 20px 20px;">
+                <hr/>
+                <h3>Prerequisite Downloads</h3>                
+                <p>
+                    You need to have the following (either free or open-sourced) items in your system. The guide was tested successfully in Windows 7 (x64) with software versions stated below: 
+                </p>
+                <ul>                
+                    <li style="padding-top: 0px">
+                        <a href="https://www.continuum.io/downloads">Anaconda Python3 (Windows x64)</a> 
+                        <br/>e.g. Anaconda3-4.1.1-Windows-x86_64.exe
+                    </li>
+                    <li style="padding-top: 15px">
+                        <a href="https://www.visualstudio.com/">Visual Studio 2015</a> 
+                        <br/>e.g. Visual Studio 2015 Community
+                    </li>
+                    <li style="padding-top: 15px">
+                        <a href="https://sourceforge.net/projects/quantlib/files/QuantLib/">QuantLib and QuantLib-SWIG source code</a> 
+                        <br/>e.g. QuantLib-1.8.zip, QuantLib-SWIG-1.8.zip
+                    </li>
+                    <li style="padding-top: 15px">
+                        <a href="https://sourceforge.net/projects/boost/files/boost-binaries/">Boost C++ Libraries binary</a>
+                        <br/>e.g. boost_1_61_0-msvc-14.0-64.exe
+                    </li>              
+                </ul>
+                
+                <hr/>
+                <h3>Building Procedure</h3>                
+                <ol>                
+                    <li>
+                        Install/unpack the following items:
+                        <ul type="disk">
+                            <li>install Visual Studio 2015</li>
+                            <li>install Boost Libraries, e.g. "C:\boost_1_61_0"</li> 
+                            <li>install Anaconda Python3, e.g. "C:\Anaconda3"</li> 
+                            <li>unpack "QuantLib-1.8.zip", e.g. "C:\QuantLib-1.8"</li>
+                            <li>unpack "QuantLib-SWIG-1.8.zip", e.g. "C:\QuantLib-SWIG-1.8"</li> 
+                        </ul>
+                    </li>
+                    <br/>
+                    <li>
+                        Start "C:\QuantLib-1.8\QuantLib_vc14.sln" with Visual Studio 2015.
+                    </li>
+                    <br/>
+                    <li>
+                        In Visual Studio Toolbars, change <i>Solution Configurations</i> to "Release" and change <i>Solution Platforms</i> to "x64".
+                    </li>               
+                    <br/>
+                    <li>
+                        In <i>Property Manager</i> tab, right-click <i>QuantLib</i> and then click <i>Properties</i>. Select <i>VC++ Directories</i> in the left pane, and then append the Boost paths to <i>Include Directories</i> and <i>Library Directories</i> fields respectively in the right pane. For instance, if your Boost is installed in "C:\boost_1_61_0", you will need to
+                        <ul>
+                            <li>append path "C:\boost_1_61_0" to <i>Include Directories</i> field.</li>
+                            <li>append path "C:\boost_1_61_0\lib64-msvc-14.0" to <i>Library Directories</i> field.</li> 
+                        </ul>	
+                    </li>               
+                    <br/>
+                    <li>
+                        Build <i>QuantLib</i> module (only). It will take about 15~30 minutes. Once finished you will find "QuantLib-vc140-x64-mt.lib" file in directory "C:\QuantLib-1.8\lib".  
+                    </li>
+                    <br/>
+                    <li>
+                        Run "Anaconda Prompt" from Start Menu. In the console window, goto directory "C:\QuantLib-SWIG-1.8\Python" and set the following environment variables:
+                        <ul>
+                            <li>set INCLUDE=C:\boost_1_61_0</li>
+                            <li>set LIB=C:\boost_1_61_0\lib64-msvc-14.0</li> 
+                            <li>set QL_DIR=C:\QuantLib-1.8</li>
+                        </ul>
+                    </li>
+                    <br/>
+                    <li>
+                        Stay in the console window, and type in the following commands to build and install:
+                        <ul>
+                            <li>python setup.py build</li>
+                            <li>python setup.py install</li> 
+                        </ul>
+                        <br/>
+                        Or you may want to create a distribution package (msi file) by issuing command:
+                        <ul>
+                            <li>python setup.py bdist_msi</li>
+                        </ul>
+                        <br/>
+                        You will find an installation file "QuantLib-Python-1.8.win-amd64-py3.5.msi" in directory "C:\QuantLib-SWIG-1.8\Python\dist".
+                    </li>                
+                </ol>
+               
+                <hr/>
+                <h3>Pre-built Library</h3>                
+                <p>Below is the QuantLib-1.8 library built for 64-bit Windows and CPython 3.5:</p>
+                <ul>                
+                    <li>
+                        <a href="QuantLib-Python-1.8.win-amd64-py3.5.msi">QuantLib-Python-1.8.win-amd64-py3.5.msi</a>
+                    </li>              
+                </ul>               
+            </div>
+          
+            
+            
+            
+           <h2>QuantLib Python for Linux</h2>
+            <div style="width:95%;;padding:0px 20px 20px 20px;">
+                <hr/>
+                <h3>Prerequisite Downloads</h3>                
+                <p>
+                    You need to have the following items in your system. The guide was tested successfully in Ubuntu 16.04 (x64) with software versions stated below: 
+                </p>
+                <ul>                
+                    <li>
+                        <a href="https://www.continuum.io/downloads">Anaconda Python3 (Linux x64)</a> 
+                        <br/>e.g. Anaconda3-4.1.1-Linux-x86_64.sh
+                    </li>
+                    <br/>
+                    <li>
+                        <a href="https://sourceforge.net/projects/quantlib/files/QuantLib/">QuantLib and QuantLib-SWIG source code</a> 
+                        <br/>e.g. QuantLib-1.8.zip, QuantLib-SWIG-1.8.zip
+                    </li>            
+                </ul>
+                
+                <hr/>
+                <h3>Building Procedure</h3>                
+                <ol>                
+                    <li>
+                        Install <i>Anaconda Python3</i> for Linux x64. At the end, remember to allow adding the Anaconda directory to your bash shell PATH environment variable. Now Python3 becomes the default Python environment.  
+                    </li>
+                    <br/>
+                    <li>
+                        Install Boost library binary. In a terminal, run command:
+                        <ul>
+                            <li>sudo apt-get install libboost-all-dev</li>
+                        </ul>
+                    </li>
+                    <br/>
+                    <li>
+                        Unpack, complile and install QuantLib binary. In QuantLib-1.8 directory, run the commands (note that the compilation process may take upto 1 hour):
+                        <ul>
+                            <li>./configure</li>
+                            <li>make -j 4</li> 
+                            <li>sudo make install</li>
+                            <li>sudo ldconfig</li>
+                        </ul>
+                        Depending on your system, you may or may not need to run the last command to notify the dynamic linker that a new shared library is available.
+                    </li>               
+                    <br/>
+                    <li>
+                        Compile and install QuantLib-Python binary. In QuantLib-SWIG-1.8 directory, run the commands:
+                        <ul>
+                            <li>./configure</li>
+                            <li>make -C Python</li> 
+                            <li>sudo make -C Python install</li>
+                        </ul>
+                    </li>               
+                </ol>
+                
+                <hr/>
+                <h3>Useful Links</h3>                
+                <ul>              
+                    <li style="padding-top: 0px">
+                        <a href="http://quantlib.org/install/linux.shtml">http://quantlib.org/install/linux.shtml</a>
+                    </li>
+                    <li style="padding-top: 10px">
+                        <a href="http://quantlib.org/install/linux-python.shtml">http://quantlib.org/install/linux-python.shtml</a>                        
+                    </li>
+                    <li style="padding-top: 10px">
+                        <a href="https://docs.continuum.io/anaconda/install.html#anaconda-install">https://docs.continuum.io/anaconda/install.html#anaconda-install</a>
+                    </li>                         
+                </ul>
+            </div> 
+
+
+
+            
+<!-- 			<hr/>
+			<p>							
+				<script language="Javascript">
+					var lastModDate = new Date(document.lastModified)
+					document.write("Last update was on <i>" + lastModDate.toDateString() + "</i>.");
+				</script>
+			</p>
+            <br/> -->
+        </font>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
